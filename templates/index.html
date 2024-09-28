@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación CSV</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <button id="openCsvBtn" class="bg-blue-500 text-white px-4 py-2 rounded">Abrir CSV</button>
+        <h1 id="fileName" class="mx-4">N/A</h1> <!-- Título que muestra el nombre del archivo -->
+        <button id="generateReportBtn" class="bg-green-500 text-white px-4 py-2 rounded">Generar reporte</button>
+    </header>
+
+    <main>
+        <!-- Control deslizante -->
+        <div class="slider-container mt-8">
+            <input type="range" id="slider" min="0" max="50" value="0" class="w-full" />
+            <span id="sliderValue" class="text-center block mt-2">0</span> <!-- Tooltip que muestra el valor actual -->
+        </div>
+
+        <!-- Tabla -->
+        <div class="mt-8 mx-4">
+            <table class="table-auto w-full border border-gray-300">
+                <tbody>
+                    <tr>
+                        <td class="table-cell font-bold">Frecuencia central (Hz)</td>
+                        <td class="table-cell">Valor 1</td>
+                        <td class="table-cell font-bold">Ancho de banda (Hz)</td>
+                        <td class="table-cell">Valor 2</td>
+                    </tr>
+                    <tr>
+                        <td class="table-cell font-bold">Nivel de ruido (dBm)</td>
+                        <td class="table-cell">Valor 3</td>
+                        <td class="table-cell font-bold">Modulación</td>
+                        <td class="table-cell">Valor 4</td>
+                    </tr>
+                    <tr>
+                        <td class="table-cell font-bold">Amplitud (dBm)</td>
+                        <td class="table-cell">Valor 5</td>
+                        <td class="table-cell font-bold">Picos espectrales (Hz)</td>
+                        <td class="table-cell">Valor 6</td>
+                    </tr>
+                    <tr>
+                        <td class="table-cell font-bold">Relación Señal/Ruido (dBm)</td>
+                        <td class="table-cell">Valor 7</td>
+                        <td class="table-cell font-bold">Factor de cresta (dBm)</td>
+                        <td class="table-cell">Valor 8</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Espectrograma -->
+        <div class="mt-8">
+            <img id="spectrogram" src="/spectrogram" alt="Espectrograma" class="mx-auto" />
+        </div>
+
+        <!-- Mostrar el gráfico de frecuencia-amplitud -->
+    </main>
+
+    <input type="file" id="csvInput" accept=".csv" style="display: none;" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>  <!-- Enlace al archivo JavaScript externo -->
+</body>
+
+</html>
